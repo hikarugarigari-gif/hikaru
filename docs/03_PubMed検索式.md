@@ -161,3 +161,42 @@ Tsuchiya ?[Author] AND (Keio[Affiliation] OR "Keio University"[Affiliation])
 Tsuchiya ?[Author] AND (antiemetic*[tiab] OR "Antiemetics"[Mesh] OR nausea[tiab] OR chemotherapy[tiab] OR fertility[tiab] OR claims[tiab])
 ```
 - 同姓の別人が混ざりやすいので、研究室のWebページや researchmap の業績一覧と照らし合わせる。
+
+---
+
+## 追加：ICIの軸（テーマ①・②）
+
+**共通パーツ [ICI]**
+```
+("Immune Checkpoint Inhibitors"[Mesh] OR "immune checkpoint inhibitor*"[tiab] OR nivolumab[tiab] OR pembrolizumab[tiab] OR ipilimumab[tiab] OR atezolizumab[tiab] OR durvalumab[tiab] OR "anti-PD-1"[tiab] OR "anti-PD-L1"[tiab])
+```
+
+**① ICIと生殖機能・妊孕性**
+```
+("Immune Checkpoint Inhibitors"[Mesh] OR "immune checkpoint inhibitor*"[tiab] OR nivolumab[tiab] OR pembrolizumab[tiab] OR ipilimumab[tiab])
+AND (fertility[tiab] OR infertility[tiab] OR "ovarian function"[tiab] OR "ovarian reserve"[tiab] OR "anti-Mullerian hormone"[tiab] OR AMH[tiab] OR hypogonadism[tiab] OR orchitis[tiab] OR "testicular function"[tiab] OR spermatogenesis[tiab] OR pregnancy[tiab])
+```
+
+**①-補足 内分泌irAEの日本のDB研究（アウトカム定義の参考）**
+```
+("immune checkpoint inhibitor*"[tiab] OR nivolumab[tiab] OR pembrolizumab[tiab])
+AND (hypothyroidism[tiab] OR "adrenal insufficiency"[tiab] OR hypophysitis[tiab] OR "type 1 diabetes"[tiab] OR endocrin*[tiab])
+AND (claims[tiab] OR JMDC[tiab] OR DeSC[tiab] OR "Administrative Claims, Healthcare"[Mesh] OR JADER[tiab])
+AND ("Japan"[Mesh] OR Japan*[tiab])
+```
+
+**② 自己免疫疾患の既往とirAE**
+```
+("Immune Checkpoint Inhibitors"[Mesh] OR "immune checkpoint inhibitor*"[tiab] OR nivolumab[tiab] OR pembrolizumab[tiab])
+AND ("Autoimmune Diseases"[Mesh] OR "pre-existing autoimmune"[tiab] OR "preexisting autoimmune"[tiab] OR "autoimmune disease*"[tiab] OR "rheumatoid arthritis"[tiab] OR psoriasis[tiab] OR "inflammatory bowel disease"[tiab])
+AND ("immune-related adverse event*"[tiab] OR irAE*[tiab] OR flare*[tiab])
+```
+→ DB研究に絞るなら `AND (claims[tiab] OR "real-world"[tiab] OR cohort[tiab] OR registry[tiab])` を追加。
+
+**論文のピンポイント検索**
+| 論文 | PubMedに入れるもの |
+|---|---|
+| DeSC 内分泌irAE（JCEM 2025） | `40503677` |
+| ペムブロリズマブと卵巣機能（BCRT 2025） | `40261555` |
+| ICI後の精巣機能（Clin Endocrinol 2025） | `40653940` |
+| ICIと女性の妊孕性 SR | `42102629` |
