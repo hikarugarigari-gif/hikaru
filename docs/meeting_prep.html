@@ -1,0 +1,209 @@
+<title>土屋先生 面談準備シート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column (max ~760px), sections stacked; candidate cards in one column; question list as checklist */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --fg:#1c2330; --muted:#5b6475; --line:#dde1e8;
+  --accent:#2f4fa3; --accent-soft:#e7ecf8; --ok:#2e7d5b; --ok-soft:#e3f2ea; --warn:#9a5b12; --warn-soft:#f8eddc;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1a2029; --fg:#e6e9ef; --muted:#9aa3b2; --line:#2c3440;
+  --accent:#8fa8ec; --accent-soft:#232d45; --ok:#7cc9a4; --ok-soft:#1d3329; --warn:#e3b57a; --warn-soft:#3a2d1c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1a2029; --fg:#e6e9ef; --muted:#9aa3b2; --line:#2c3440;
+  --accent:#8fa8ec; --accent-soft:#232d45; --ok:#7cc9a4; --ok-soft:#1d3329; --warn:#e3b57a; --warn-soft:#3a2d1c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.8;margin:0}
+.wrap{max-width:780px;margin:0 auto;padding-inline:16px;padding-block:32px 64px;display:flex;flex-direction:column;gap:40px}
+header{display:flex;flex-direction:column;gap:6px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+h1{font-family:var(--display);font-size:28px;line-height:1.35;margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-size:20px;margin:0 0 12px;text-wrap:balance}
+h3{font-family:var(--display);font-size:17px;margin:0;text-wrap:balance}
+p{margin:0}
+.lead{color:var(--muted)}
+section{display:flex;flex-direction:column;gap:12px}
+.quote{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:16px 18px}
+.quote p+p{margin-top:8px}
+.goal{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.goal div{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+.goal b{display:block;font-size:13px;color:var(--muted);font-weight:500}
+.cards{display:flex;flex-direction:column;gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.chip{font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.chip.main{background:var(--accent-soft);color:var(--accent)}
+.chip.feasible{background:var(--ok-soft);color:var(--ok)}
+.chip.safe{background:var(--warn-soft);color:var(--warn)}
+dl{display:grid;grid-template-columns:5.5em 1fr;gap:6px 12px;margin:0}
+dt{font-size:13px;color:var(--muted);font-weight:500;padding-top:2px}
+dd{margin:0;min-width:0}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.92em}
+.qgroup{display:flex;flex-direction:column;gap:6px}
+.qgroup h3{font-size:15px;color:var(--muted);margin-top:8px}
+.q{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;cursor:pointer}
+.q input{margin-top:6px;accent-color:var(--accent);width:16px;height:16px;flex:none}
+.q input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.q:has(input:checked) span{color:var(--muted);text-decoration:line-through}
+.progress{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;min-width:480px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:none}
+textarea{width:100%;min-height:140px;font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px}
+textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.hint{font-size:13px;color:var(--muted)}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:480px){dl{grid-template-columns:1fr}dt{padding-top:6px}h1{font-size:24px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">医薬品情報学講座 ・ 研究テーマ面談</span>
+    <h1>土屋先生 面談準備シート</h1>
+    <p class="lead">医療ビッグデータを用いたがん薬物療法の研究で、自分のテーマを詰めるための1枚。</p>
+  </header>
+
+  <section aria-labelledby="goal">
+    <h2 id="goal">面談のゴール</h2>
+    <div class="goal">
+      <div><b>伝える</b>自分の興味の軸と、テーマ候補3つ</div>
+      <div><b>詰める</b>各候補がDBで実現できるか</div>
+      <div><b>決めて帰る</b>次の1〜2週間で読むもの・調べること</div>
+    </div>
+  </section>
+
+  <section aria-labelledby="open">
+    <h2 id="open">最初に話すこと（1分）</h2>
+    <div class="quote">
+      <p>自分の興味を整理したところ、<strong>臨床試験ではわからない患者集団で、抗がん薬の有害事象のリスク因子を定量的に明らかにし、添付文書やガイドラインの空白を埋める</strong>研究がしたいと考えました。</p>
+      <p>授業でirAEが面白いと思ったこともあり、<strong>ICIの安全性</strong>を軸に候補を考えてきました。治療がすぐ変わる特定のレジメンより、<strong>薬剤クラスや患者要因についての問い</strong>のほうが、時間がたっても価値が落ちないと考えています。</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="themes">
+    <h2 id="themes">テーマ候補</h2>
+    <div class="cards">
+      <article class="card">
+        <div class="card-head"><span class="chip main">本命</span><h3>① 若年がん患者へのICIと生殖機能</h3></div>
+        <dl>
+          <dt>背景</dt><dd>ICIは術前・術後療法として若年者にも広がった（例：トリプルネガティブ乳がんの術前ペムブロリズマブ）。性腺への影響は動物実験と少数例の報告のみで、集団レベルのデータはほぼない。</dd>
+          <dt>先生の研究</dt><dd>2021年の <i>Future Oncol</i>（JMDC）で「無月経リスクが不明な抗がん薬が多く使われている」と示された。ICIは今まさにリスク不明の薬。</dd>
+          <dt>根拠</dt><dd>Kamitani 2025（DeSC, <span class="num">n=12,978</span>）で副腎不全（≒下垂体炎）は若いほど多い（10歳上がるごとに <span class="num">OR 0.84</span>）。下垂体炎から中枢性の性腺機能低下につながりうる。</dd>
+          <dt>案</dt><dd>JMDCで15〜45歳のICI使用者を抽出し、まず使用実態と内分泌irAEの発生率（実態調査）。将来は妊娠アルゴリズム・母子紐付けで治療後の妊娠へ。</dd>
+          <dt>懸念</dt><dd>術前・術後のICIは2021〜2022年以降。追跡期間と症例数が足りるか。</dd>
+        </dl>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><span class="chip feasible">実現可能性が高い</span><h3>② 自己免疫疾患の既往がある患者でのICIとirAE</h3></div>
+        <dl>
+          <dt>背景</dt><dd>既往のある人は臨床試験で除外されてきた。統合解析では軽いirAEは増える（<span class="num">RR 1.34</span>）が、重いirAEが増えるかは結論が出ていない。</dd>
+          <dt>根拠</dt><dd>Kamitani 2025で、もともとの甲状腺機能低下症があると1型糖尿病のリスクが <span class="num">OR 2.54</span>。</dd>
+          <dt>案</dt><dd>既往の自己免疫疾患（関節リウマチ・乾癬・炎症性腸疾患・橋本病など）を種類別の曝露とし、重いirAEを発生までの時間で解析。</dd>
+          <dt>定義</dt><dd>内分泌irAEはホルモン補充薬の開始（レボチロキシン・ヒドロコルチゾン・インスリン）。それ以外の重いirAEは高用量プレドニゾロン／メチルプレドニゾロン、インフリキシマブ・ミコフェノール酸の追加など。</dd>
+          <dt>論点</dt><dd>アウトカムごとに既往のある人を除外する。制吐目的のデキサメタゾンとirAE治療のステロイドを区別する。既往疾患の悪化（フレア）と新しいirAEを区別する。</dd>
+        </dl>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><span class="chip safe">安全策</span><h3>③ 抗がん薬の種類と顎骨壊死のリスク因子</h3></div>
+        <dl>
+          <dt>位置づけ</dt><dd>先生の新規テーマ。副作用報告DB（JADER・FAERS）で出ているシグナルを、コホート研究で検証する。</dd>
+          <dt>案</dt><dd>骨修飾薬の使用者で、併用する抗がん薬（血管新生阻害薬など）と歯科処置によるリスクの違いを見る。</dd>
+          <dt>先行研究</dt><dd>静岡国保DB研究（2026）、NDB研究（Ishimaru 2022）。</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="questions">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px">
+      <h2 id="questions" style="margin:0">先生に聞きたいこと</h2>
+      <span class="progress" id="progress" aria-live="polite"></span>
+    </div>
+    <p class="hint">聞けたものにチェックを入れる。チェックはこのブラウザにだけ保存されます。</p>
+
+    <div class="qgroup">
+      <h3>データ・環境</h3>
+      <label class="q"><input type="checkbox" id="q1"><span>研究室で使えるDBはどれか（JMDC／DeSC／MDV）。データの最新期間はいつまでか（2024年まで入っているか）。</span></label>
+      <label class="q"><input type="checkbox" id="q2"><span>JMDCの母子紐付けと妊娠同定アルゴリズムは使えるか。治療後の妊娠のアウトカムにも使えるか。</span></label>
+      <label class="q"><input type="checkbox" id="q3"><span>解析環境（SAS／R／Python、データの置き場所、作業ルール）。</span></label>
+    </div>
+    <div class="qgroup">
+      <h3>テーマの方向性</h3>
+      <label class="q"><input type="checkbox" id="q4"><span>テーマ①は症例数が少ないかもしれない。まず実態調査から始めるのは卒業研究として妥当か。</span></label>
+      <label class="q"><input type="checkbox" id="q5"><span>重いirAEをレセプトでどう定義するのが良いか。研究室で使ってきた定義やバリデーション研究はあるか。</span></label>
+      <label class="q"><input type="checkbox" id="q6"><span>制吐目的のデキサメタゾンとirAE治療のステロイドを、薬剤と用量でどう区別すると良いか。</span></label>
+      <label class="q"><input type="checkbox" id="q7"><span>3つの候補のうち、研究室の今後の方向性（科研費の妊娠・抗がん薬研究など）と最も合うのはどれか。</span></label>
+    </div>
+    <div class="qgroup">
+      <h3>先生の研究について</h3>
+      <label class="q"><input type="checkbox" id="q8"><span>2023年の論文では妊娠中の抗がん薬曝露が13人だった。科研費の研究ではどうやって症例数を確保しているか。</span></label>
+      <label class="q"><input type="checkbox" id="q9"><span>自然言語処理の研究で使っているカルテデータは、レセプトDBと組み合わせられるか。</span></label>
+    </div>
+    <div class="qgroup">
+      <h3>研究室での進め方</h3>
+      <label class="q"><input type="checkbox" id="q10"><span>先輩方（山本さん・山田さん・宮崎さん）とテーマが重ならないか。一緒に進められる部分はあるか。</span></label>
+      <label class="q"><input type="checkbox" id="q11"><span>学部生のうちに身につけておくべき統計・疫学の基礎（おすすめの教科書など）。</span></label>
+      <label class="q"><input type="checkbox" id="q12"><span>卒業研究のスケジュール（テーマ確定、倫理審査、解析、学会発表の時期）。</span></label>
+    </div>
+  </section>
+
+  <section aria-labelledby="terms">
+    <h2 id="terms">30秒で説明できるようにしておく用語</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">用語</th><th scope="col">ひとことで</th></tr></thead>
+        <tbody>
+          <tr><td>新規使用者デザイン</td><td>その薬を初めて使い始めた人だけを対象にする</td></tr>
+          <tr><td>インデックス日／ルックバック期間</td><td>追跡の開始日／その前の、既往や併用薬を調べる期間</td></tr>
+          <tr><td>アウトカム定義・バリデーション</td><td>「起きた」とみなす条件と、その正しさの検証</td></tr>
+          <tr><td>イモータルタイムバイアス</td><td>「◯◯が起きた群」に入るまで生きていることによる偏り</td></tr>
+          <tr><td>競合リスク</td><td>目的のイベントの前に死亡などが起きて観察できなくなること（Fine-Grayモデル）</td></tr>
+          <tr><td>時間依存性共変量</td><td>追跡途中で変わる変数を、変わった時点から反映する方法</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="memo">
+    <h2 id="memo">面談メモ</h2>
+    <label class="hint" for="notes">先生のコメント、決まったこと、次に読む論文、次回の面談日など。このブラウザにだけ保存されます。</label>
+    <textarea id="notes" placeholder="例：テーマ②から始める。次回までにJMDCのICI使用者数を確認…"></textarea>
+  </section>
+
+  <footer>
+    主な文献：Kamitani F, et al. <i>J Clin Endocrinol Metab</i> 2026;111:54（PMID 40503677）／Tajima K, Tsuchiya M, et al. <i>Future Oncol</i> 2021／Tajima K, Tsuchiya M, et al. <i>Pharmacoepidemiology</i> 2023／Hatakeyama S, Tsuchiya M, et al. <i>Pharmacoepidemiol Drug Saf</i> 2025（PMID 41224242）
+  </footer>
+</div>
+
+<script>
+(function(){
+  var KEY='meeting-prep-v1';
+  var state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){state={};}
+  var boxes=document.querySelectorAll('.q input');
+  var notes=document.getElementById('notes');
+  var progress=document.getElementById('progress');
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+  function update(){
+    var done=0;boxes.forEach(function(b){if(b.checked)done++;});
+    progress.textContent=done+' / '+boxes.length+' 聞けた';
+  }
+  boxes.forEach(function(b){
+    if(state[b.id])b.checked=true;
+    b.addEventListener('change',function(){state[b.id]=b.checked;save();update();});
+  });
+  if(typeof state.notes==='string')notes.value=state.notes;
+  notes.addEventListener('input',function(){state.notes=notes.value;save();});
+  update();
+})();
+</script>
