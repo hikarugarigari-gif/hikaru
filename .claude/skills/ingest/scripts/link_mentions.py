@@ -16,7 +16,9 @@ import shutil
 import sys
 from pathlib import Path
 
-EXCLUDE_DIRS = {".obsidian", ".trash", ".git", ".ingest-backup"}
+EXCLUDE_DIRS = {".obsidian", ".trash", ".git", ".ingest-backup", ".claude"}
+EXCLUDE_FILES = {"CLAUDE.md", "AGENTS.md"}  # Claude への指示ファイルは対象外
+READONLY_DIRS = {"raw"}  # 元資料: リンク先にはなるが、中身は書き換えない
 SHORT_LEN = 2  # この文字数以下の名前は承認制
 
 # 本文中でリンク化してはいけない範囲
@@ -35,8 +37,13 @@ HEADING = re.compile(r"^\s{0,3}#{1,6}\s")
 
 def iter_notes(vault: Path):
     for p in sorted(vault.rglob("*.md")):
-        if not any(part in EXCLUDE_DIRS for part in p.relative_to(vault).parts):
+        parts = p.relative_to(vault).parts
+        if p.name not in EXCLUDE_FILES and not any(part in EXCLUDE_DIRS for part in parts):
             yield p
+
+
+def is_readonly(vault: Path, p: Path):
+    return any(part in READONLY_DIRS for part in p.relative_to(vault).parts[:-1])
 
 
 def split_frontmatter(text: str):
@@ -167,6 +174,8 @@ def main():
     for p in iter_notes(vault):
         if regex is None:
             break
+        if is_readonly(vault, p):
+            continue
         text = p.read_text(encoding="utf-8")
         fm, body = split_frontmatter(text)
         counter = {"n": 0, "approved": approved}
