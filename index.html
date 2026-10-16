@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>AI メモ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- Title bar (draggable) -->
+  <div class="titlebar">
+    <div class="titlebar-drag"></div>
+    <span class="titlebar-title">AI メモ</span>
+    <button class="btn-icon" id="btnClose" title="閉じる">✕</button>
+  </div>
+
+  <!-- Tab bar -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="memo">メモ</button>
+    <button class="tab" data-tab="history">履歴</button>
+    <button class="tab" data-tab="snippets">スニペット</button>
+    <button class="tab" data-tab="settings">設定</button>
+  </nav>
+
+  <!-- Tab panels -->
+  <main class="content">
+
+    <!-- ─── メモ ─────────────────────────────────────────── -->
+    <section class="panel active" id="panel-memo">
+      <div class="field">
+        <input type="text" id="memoTitle" class="input" placeholder="タイトル">
+      </div>
+      <div class="field grow">
+        <textarea id="memoBody" class="textarea" placeholder="本文"></textarea>
+      </div>
+      <div id="imageArea" class="image-area">
+        <div id="imageThumbnails" class="image-thumbnails"></div>
+        <p class="image-drop-hint">画像をドロップして添付（最大5枚）</p>
+      </div>
+      <div class="field">
+        <input type="text" id="memoTags" class="input" placeholder="タグ（スペースまたはカンマ区切り）">
+      </div>
+      <div class="field row">
+        <select id="memoSource" class="select">
+          <option value="Claude">Claude</option>
+          <option value="Gemini">Gemini</option>
+          <option value="自分のメモ" selected>自分のメモ</option>
+        </select>
+        <button id="btnSaveMemo" class="btn btn-primary">Notion に保存</button>
+      </div>
+      <div id="memoMsg" class="msg"></div>
+    </section>
+
+    <!-- ─── 履歴 ─────────────────────────────────────────── -->
+    <section class="panel" id="panel-history">
+      <div class="field row">
+        <input type="text" id="historySearch" class="input grow" placeholder="タイトル・本文・タグで検索…">
+        <button id="btnSearch" class="btn btn-secondary">検索</button>
+      </div>
+      <div id="historyList" class="list-container">
+        <p class="hint">「検索」ボタンで履歴を表示します</p>
+      </div>
+      <div id="historyMsg" class="msg"></div>
+    </section>
+
+    <!-- ─── スニペット ───────────────────────────────────── -->
+    <section class="panel" id="panel-snippets">
+      <div class="snippet-top">
+        <div class="field row">
+          <span class="section-label">スニペット一覧</span>
+          <button id="btnNewSnippet" class="btn btn-secondary btn-sm">＋ 新規</button>
+        </div>
+        <div id="snippetList" class="list-container">
+          <p class="hint">スニペットがありません</p>
+        </div>
+      </div>
+      <div id="snippetEditor" class="editor hidden">
+        <div class="field">
+          <input type="text" id="snippetName" class="input" placeholder="スニペット名">
+        </div>
+        <div class="field grow">
+          <textarea id="snippetBody" class="textarea"
+                    placeholder="本文（例：{{変数名}} で穴埋め変数）"></textarea>
+        </div>
+        <div class="field row">
+          <button id="btnSaveSnippet" class="btn btn-primary btn-sm">保存</button>
+          <button id="btnCancelSnippet" class="btn btn-ghost btn-sm">キャンセル</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 設定 ─────────────────────────────────────────── -->
+    <section class="panel" id="panel-settings">
+      <div class="settings-group">
+        <h3>Notion 連携</h3>
+        <div class="field">
+          <label>API キー</label>
+          <input type="password" id="cfgApiKey" class="input" placeholder="secret_...">
+        </div>
+        <div class="field">
+          <label>データベース ID</label>
+          <input type="text" id="cfgDbId" class="input"
+                 placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+        </div>
+      </div>
+      <div class="settings-group">
+        <h3>ショートカット</h3>
+        <div class="field">
+          <label>グローバルショートカット</label>
+          <input type="text" id="cfgShortcut" class="input"
+                 placeholder="CommandOrControl+Shift+M">
+        </div>
+      </div>
+      <div class="field">
+        <button id="btnSaveSettings" class="btn btn-primary">設定を保存</button>
+      </div>
+      <div id="settingsMsg" class="msg"></div>
+      <div class="settings-group">
+        <h3>保留中のメモ</h3>
+        <p class="hint" id="pendingInfo">読み込み中…</p>
+        <button id="btnRetry" class="btn btn-secondary btn-sm">再送信を試みる</button>
+        <div id="retryMsg" class="msg"></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ─── 穴埋めダイアログ ─────────────────────────────────── -->
+<div id="fillOverlay" class="overlay hidden">
+  <div class="dialog">
+    <h3 id="fillTitle">変数を入力</h3>
+    <div id="fillFields"></div>
+    <div class="field row" style="margin-top:8px">
+      <button id="btnFillCopy" class="btn btn-primary">コピー</button>
+      <button id="btnFillCancel" class="btn btn-ghost">キャンセル</button>
+    </div>
+  </div>
+</div>
+
+<script src="renderer.js"></script>
+</body>
+</html>

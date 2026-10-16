@@ -1,0 +1,15 @@
+{
+  "name": "ai-memo-app",
+  "version": "1.0.0",
+  "description": "AIとの会話内容を記録するmacOS専用メモアプリ",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron-store": "^8.2.0"
+  },
+  "devDependencies": {
+    "electron": "^32.0.0"
+  }
+}
